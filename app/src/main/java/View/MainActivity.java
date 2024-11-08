@@ -3,8 +3,10 @@ package View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.teste04.R;
 
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
     EditText PrimeiroNome, SobreNome, CursoDesejado, TelefoneContato;
-
+    Button onclick, LIMPAR, SALVAR, FINALIZAR;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,30 +40,41 @@ public class MainActivity extends AppCompatActivity {
         CursoDesejado.setText(pessoa.getCursoDesejado());
         TelefoneContato.setText(pessoa.getTelefoneContato());
 
-        Button LIMPAR = findViewById(R.id.LIMPAR);
-        LIMPAR.setOnClickListener(view -> LimparResultado());
+        LIMPAR = findViewById(R.id.LIMPAR);
 
-        Button SALVAR = findViewById(R.id.SALVAR);
-        SALVAR.setOnClickListener(view -> SalvarResultado());
+        SALVAR = findViewById(R.id.SALVAR);
 
-        Button FINALIZAR = findViewById(R.id.FINALIZAR);
-        FINALIZAR.setOnClickListener(view -> finish());
+        FINALIZAR = findViewById(R.id.FINALIZAR);
 
 
+    FINALIZAR.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick ( View view){
+            Toast.makeText(MainActivity.this,"volte sempre", Toast.LENGTH_LONG).show();
+            finish();
+        }
+    });
+    SALVAR.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            pessoa.setPrimeiroNome(PrimeiroNome.getText().toString());
+            pessoa.setSobrenome(SobreNome.getText().toString());
+            pessoa.setCursoDesejado(CursoDesejado.getText().toString());
+            pessoa.setTelefoneContato(TelefoneContato.getText().toString());
+
+            Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
+        }
+    });
+    LIMPAR.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            PrimeiroNome.setText("");
+            SobreNome.setText("");
+            CursoDesejado.setText("");
+            TelefoneContato.setText("");
+        }
+    });
     }
-    private void LimparResultado(){
-        PrimeiroNome.setText("");
-        SobreNome.setText("");
-        CursoDesejado.setText("");
-        TelefoneContato.setText("");
-    }
-    private void SalvarResultado(){
-        PrimeiroNome.setText(pessoa.getPrimeiroNome());
-        SobreNome.setText(pessoa.getSobrenome());
-        CursoDesejado.setText(pessoa.getCursoDesejado());
-        TelefoneContato.setText(pessoa.getTelefoneContato());
-    }
-
 
 
 
