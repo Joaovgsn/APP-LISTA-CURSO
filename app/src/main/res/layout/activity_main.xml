@@ -8,7 +8,6 @@
     tools:context="View.MainActivity">
 
 
-
     <EditText
         android:id="@+id/editSobreNome"
         android:layout_width="match_parent"
