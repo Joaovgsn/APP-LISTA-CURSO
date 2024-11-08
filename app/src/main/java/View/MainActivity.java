@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setSobrenome(SobreNome.getText().toString());
             pessoa.setCursoDesejado(CursoDesejado.getText().toString());
             pessoa.setTelefoneContato(TelefoneContato.getText().toString());
-
             Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
         }
     });
@@ -75,7 +74,5 @@ public class MainActivity extends AppCompatActivity {
         }
     });
     }
-
-
 
 }
