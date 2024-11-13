@@ -10,20 +10,26 @@ import android.widget.Toast;
 
 import com.example.teste04.R;
 
+import controller.PessoaController;
 import model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
 
     Pessoa pessoa;
+
+    PessoaController controller;
     EditText PrimeiroNome, SobreNome, CursoDesejado, TelefoneContato;
     Button onclick, LIMPAR, SALVAR, FINALIZAR;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         pessoa = new Pessoa();
+        controller = new PessoaController();
+        controller.toString();
 
         pessoa.setPrimeiroNome("Joao");
         pessoa.setSobrenome("Gomes");
@@ -54,20 +60,21 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     });
-    SALVAR.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View view){
-            pessoa.setPrimeiroNome(PrimeiroNome.getText().toString());
-            pessoa.setSobrenome(SobreNome.getText().toString());
-            pessoa.setCursoDesejado(CursoDesejado.getText().toString());
-            pessoa.setTelefoneContato(TelefoneContato.getText().toString());
-            Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
-        }
-    });
+    //SALVAR.setOnClickListener(new View.OnClickListener(){
+    //    @Override
+    //    public void onClick(View view){
+    //        pessoa.setPrimeiroNome(PrimeiroNome.getText().toString());
+    //        pessoa.setSobrenome(SobreNome.getText().toString());
+    //        pessoa.setCursoDesejado(CursoDesejado.getText().toString());
+    //        pessoa.setTelefoneContato(TelefoneContato.getText().toString());
+    //        Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
+    //        pessoaController.SALVAR();
+    //    }
+    //     });
     LIMPAR.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            PrimeiroNome.setText("");
+          PrimeiroNome.setText("");
             SobreNome.setText("");
             CursoDesejado.setText("");
             TelefoneContato.setText("");
