@@ -34,20 +34,23 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
         SharedPreferences.Editor listaVip = preferences.edit();
+        SharedPreferences.Editor limparList = preferences.edit();
 
         pessoa = new Pessoa();
         controller = new PessoaController();
         controller.toString();
 
-        pessoa.setPrimeiroNome("Joao");
-        pessoa.setSobrenome("Gomes");
-        pessoa.setCursoDesejado("Desenvolvimento de Sistema");
-        pessoa.setTelefoneContato("12 3456789");
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
+        pessoa.setSobrenome(preferences.getString("sobreNome",""));
+        pessoa.setCursoDesejado(preferences.getString("CursoDesejado",""));
+        pessoa.setTelefoneContato(preferences.getString("TelefoneContato",""));
+
 
         PrimeiroNome = findViewById(R.id.editPrimeiroNome);
         SobreNome = findViewById(R.id.editSobreNome);
         CursoDesejado = findViewById(R.id.editCursoDesejado);
         TelefoneContato = findViewById(R.id.TelefoneContato);
+
 
         PrimeiroNome.setText(pessoa.getPrimeiroNome());
         SobreNome.setText(pessoa.getSobrenome());
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setSobrenome(SobreNome.getText().toString());
             pessoa.setCursoDesejado(CursoDesejado.getText().toString());
             pessoa.setTelefoneContato(TelefoneContato.getText().toString());
+
             Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
 
             listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
@@ -90,10 +94,13 @@ public class MainActivity extends AppCompatActivity {
     LIMPAR.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-          PrimeiroNome.setText("");
+            PrimeiroNome.setText("");
             SobreNome.setText("");
             CursoDesejado.setText("");
             TelefoneContato.setText("");
+
+            limparList.clear();
+            limparList.apply();
         }
     });
     }
