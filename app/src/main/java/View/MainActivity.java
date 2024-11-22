@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,13 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         pessoa = new Pessoa();
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
-
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
-        pessoa.setSobrenome(preferences.getString("sobreNome",""));
-        pessoa.setCursoDesejado(preferences.getString("CursoDesejado",""));
-        pessoa.setTelefoneContato(preferences.getString("TelefoneContato",""));
+        controller.buscar(pessoa);
 
 
         PrimeiroNome = findViewById(R.id.editPrimeiroNome);
@@ -83,13 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this,"Dados Salvos" + pessoa.toString(),Toast.LENGTH_LONG).show();
 
-            listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-            listaVip.putString("sobreNome", pessoa.getSobrenome());
-            listaVip.putString("CursoDesejado", pessoa.getCursoDesejado());
-            listaVip.putString("TelefoneContato",pessoa.getTelefoneContato());
-
-            listaVip.apply();
-
             controller.SALVAR(pessoa);
         }
          });
@@ -100,11 +90,10 @@ public class MainActivity extends AppCompatActivity {
             SobreNome.setText("");
             CursoDesejado.setText("");
             TelefoneContato.setText("");
-
-            listaVip.clear();
-            listaVip.apply();
+            controller.limpar();
         }
     });
+        Log.i("PooAndroid",pessoa.toString());
     }
 
 }
