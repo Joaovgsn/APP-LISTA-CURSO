@@ -20,11 +20,6 @@ import model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-    SharedPreferences preferences;
-    public static final String NOME_PREFERENCES = "pref_listvip";
-    SharedPreferences.Editor listaVip;
     Pessoa pessoa;
     PessoaController controller;
     EditText PrimeiroNome, SobreNome, CursoDesejado, TelefoneContato;
@@ -34,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVip = preferences.edit();
-
 
         pessoa = new Pessoa();
         controller = new PessoaController(MainActivity.this);
