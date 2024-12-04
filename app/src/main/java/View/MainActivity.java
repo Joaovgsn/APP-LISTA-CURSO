@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spinner);
 
 
+
         pessoa = new Pessoa();
         controller = new PessoaController(MainActivity.this);
         controller.toString();
